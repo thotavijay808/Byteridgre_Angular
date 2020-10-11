@@ -1,0 +1,37 @@
+﻿   <div *ngIf="currentUser.role=='auditor'">
+    <div class="table-responsive"  >
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>IP</th>
+                    <th>Login Time</th>
+                    <th>Logout Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let audit of collection | paginate: { itemsPerPage: 1, currentPage: p }">
+                    <td>{{i}}</td>
+                    <td>{{audit.firstName}}</td>
+                    <td>{{audit.lastName}}</td>
+                    <td>{{audit.username}}</td>
+                    <td>{{audit.role}}</td>
+                    <td>{{audit.IP}}</td>
+                    <td>{{audit.loginTime | date:'short'}}</td>
+                    <td>{{audit.logoutTime | date: 'short'}}</td>
+
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+   </div>
+
+
+   <div *ngIf="currentUser.role=='user'">You Don't Have Access...</div>
+  
